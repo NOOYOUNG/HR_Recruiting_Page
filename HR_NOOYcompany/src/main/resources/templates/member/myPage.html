@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NOOY Company</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #00001ad2;
+            text-align: center;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between; /* Ensures space between logo and button container */
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            max-width: 150px; /* Adjust the logo size as needed */
+            height: auto;
+        }
+
+        .header .button-container {
+            display: flex;
+            gap: 10px; /* Adjust the gap between the buttons */
+        }
+
+        .header .button-container a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0; /* No margin needed since gap is handled by flexbox */
+        }
+
+        .header .button-container a:hover {
+            text-decoration: underline;
+        }
+
+        .mainVisual {
+            position: relative;
+            width: 100vw;
+            height: 20vh;
+            overflow: hidden;
+            background-color: #010138d2;
+            color: white;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+
+        .mainVisual h1 {
+            font-size: 2em;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .movingText {
+            position: absolute;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .movingText h2 {
+            display: inline-block;
+            padding-left: 100%;
+            animation: moveText 30s linear infinite;
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .recruiting {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .recruiting h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .recruiting h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .recruiting p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .mainMenu {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .mainMenu button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .mainMenu button:hover {
+            background-color: #0056b3;
+        }
+
+        #footer {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #000;
+            color: white;
+            text-align: right;
+        }
+
+        #footer .wrapFooter img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+    </head>
+
+<body>
+	<input type="hidden" name="idx" value="${memberdata.idx}">
+    <div class="header">
+        <div class="logo">
+            <img src="/images/NY.jpg" title="headlogo" alt="headlogo">
+        </div>
+        <div class="button-container">
+        	<a href="/member/updateMember.do">회원정보수정</a>
+            <a href="/member/detailApplyPage.do">지원내역</a>
+            <a href="/member/logout.do">로그아웃</a>
+        </div>
+    </div>
+
+    <div class="mainVisual">
+        <h1>Welcome to NOOY Company</h1>
+        <h3>We are recruiting people</h3>
+        <div class="movingText">
+            <h2>Your future is HERE!</h2>
+        </div>
+    </div>
+
+    <div class="recruiting">
+        <h2>개발자 모집 공고</h2>
+        <h3>지원 업무</h3>
+        <p>Linux를 통한 서버 관리</p>
+        <h3>지원 자격</h3>
+        <p>Linux를 통한 서버 관리에 능통하신 분<br>C++ 언어를 통한 개발 경험이 있으신 분</p>
+    </div>
+
+    <div class="mainMenu">
+    	<form action="/coverletter/write.do" method="get">
+    		<button type="submit">지원하기</button>
+    	</form>
+    </div>
+
+    <hr>
+
+    <div id="footer">
+        <div class="wrapFooter">
+            <p class="logo"><img src="/images/NY.jpg" title="footlogo" alt="footlogo"></p>
+        </div>
+    </div></body>
+
+</html>

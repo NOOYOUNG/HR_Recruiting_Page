@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원정보 수정</title>
+    <style>
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #00001ad2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .header .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header .button-container a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header .button-container a:hover {
+            text-decoration: underline;
+        }
+
+        .mainVisual {
+            position: relative;
+            width: 100vw;
+            height: 20vh;
+            min-height: 200px; /* 최소 높이 설정 */
+            overflow: hidden;
+            background-color: #010138d2;
+            color: white;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            flex-shrink: 0; /* 기본 높이 유지를 위해 설정 */
+            text-align: center;
+        }
+
+        .mainVisual h1 {
+            font-size: 2em;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .movingText {
+            position: absolute;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .movingText h2 {
+            display: inline-block;
+            padding-left: 100%;
+            animation: moveText 30s linear infinite;
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        form {
+            max-width: 480px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            background: #f4f7f8;
+            border: 1px solid #d1d1d1;
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 15px;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 12px;
+            color: #fff;
+            background-color: #010138d2;
+            font-size: 18px;
+            text-align: center;
+            font-style: normal;
+            border-radius: 5px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        #footer {
+            background-color: #000;
+            color: white;
+            text-align: right;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        #footer .wrapFooter img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="/images/NY.jpg" title="headlogo" alt="headlogo">
+        </div>
+        <div class="button-container">
+            <a href="/member/updateMember.do">회원정보수정</a>
+            <a href="/member/detailApplyPage.do">지원내역</a>
+            <a href="/member/logout.do">로그아웃</a>
+        </div>
+    </div>
+
+    <div class="mainVisual">
+        <h1>Welcome to NOOY Company</h1>
+        <h3>We are recruiting people</h3>
+        <div class="movingText">
+            <h2>Your future is HERE!</h2>
+        </div>
+    </div>
+
+    <div class="recruiting">
+        <form action="/member/updateMember.do" method="post">
+            <h1>회원 정보 수정</h1>
+            
+            <fieldset>
+           		<input type="hidden" name="idx" value="${memberdata.idx}">
+                <legend>회원정보 입력</legend>
+                
+                <label for="userId">아이디 (변경할 수 없습니다)</label>
+                <input type="text" id="userId" name="userId" th:value="${memberdata.userId}" readonly>
+                
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password">
+                
+                <label for="name">이름</label>
+                <input type="text" id="name" name="userName" th:value="${memberdata.userName}">
+                
+                <label for="phone">전화번호</label>
+                <input type="text" id="phone" name="phone" th:value="${memberdata.phone}">
+            </fieldset>
+            
+            <button type="submit" onclick="updateCompleteMsg()">수정하기</button>
+        </form>
+        
+        <form action="/member/deleteMember.do" method="post">
+            <button type="submit" onclick="return confirm('회원탈퇴 시 지원하신 이력서 정보가 사라집니다. 정말로 회원을 탈퇴하시겠습니까?')">회원탈퇴</button>
+        </form>
+    </div>
+    
+    <script>
+        function updateCompleteMsg() {
+        	alert('회원정보 수정이 완료되었습니다.');
+        }
+    </script>
+
+    <div id="footer">
+        <div class="wrapFooter">
+            <p class="logo"><img src="/images/NY.jpg" title="footlogo" alt="footlogo"></p>
+        </div>
+    </div>
+</body>
+</html>

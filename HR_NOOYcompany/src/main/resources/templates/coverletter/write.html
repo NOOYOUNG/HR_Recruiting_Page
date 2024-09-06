@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Submission Form</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            background-color: #010138d2;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        button:hover {
+            background-color: #010138;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/coverletter/write.do" method="post">
+        <h1>지원서 작성하기</h1>
+
+        <fieldset>
+            <legend class="section-title">개인정보입력</legend>
+            <label for="userName">이름</label>
+            <input type="text" id="userName" name="userName" required>
+
+            <label for="phone">전화번호</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="birth">생년월일</label>
+            <input type="date" id="birth" name="birth" required>
+
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" required>
+        </fieldset>
+
+        <fieldset>
+            <legend class="section-title">학력</legend>
+            <label for="university">대학교</label>
+            <input type="text" id="university" name="university" required>
+
+            <label for="degree">학위</label>
+            <input type="text" id="degree" name="degree" required>
+
+            <label for="major">전공</label>
+            <input type="text" id="major" name="major" required>
+
+            <label for="grade">평균학점(4.5기준)</label>
+            <input type="text" id="grade" name="grade" required>
+        </fieldset>
+
+        <fieldset>
+            <legend class="section-title">자기소개서</legend>
+            <label for="CV">지원동기와 직무 역량을 위해 수행한 활동을 기술하시오(1000자이내).</label>
+            <textarea id="CV" name="CV" maxlength="1000" required></textarea>
+        </fieldset>
+
+        <button type="submit" onclick="redirectToWriteComplete()">지원서 제출하기</button>
+    </form>
+    
+     <script>
+        function redirectToWriteComplete() {
+            window.location.href = '/coverletter/writeComplete'; // 로그인 페이지의 경로로 설정
+        }
+    </script>
+</body>
+</html>

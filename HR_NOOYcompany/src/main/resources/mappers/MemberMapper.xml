@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hr.main.mapper.MemberMapper">
+
+	<sql id="exampleColumns">
+		idx
+		,userId
+		,password
+		,userName
+		,phone
+		,birth
+		,email
+		,university
+		,major
+		,grade
+		,degree
+		,CV
+	</sql>
+	
+	<insert id="insertMember" parameterType="MemberDTO">
+		INSERT INTO example(
+			<include refid="exampleColumns" />
+		) VALUES (
+			#{idx}
+			, #{userId}
+			, #{password}
+			, #{userName}
+			, #{phone}
+			, #{birth}
+			, #{email}
+			, #{university}
+			, #{major}
+			, #{grade}
+			, #{degree}
+			, #{CV}
+		)
+	</insert>
+	
+	<select id="selectMemberDetail" parameterType="long" resultType="MemberDTO">
+		SELECT
+			<include refid="exampleColumns"/>
+		FROM
+			example
+		WHERE
+			idx=#{idx}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberDTO">
+		UPDATE example
+		SET
+			password=#{password}
+			, userName=#{userName}
+			, phone=#{phone}
+		WHERE
+			idx=#{idx}
+	</update>
+
+	<update id="deleteMember" parameterType="long">
+		DELETE FROM example
+		WHERE
+			idx=#{idx}
+	</update>
+
+	<select id="selectMemberList" parameterType="map" resultType="MemberDTO">
+		SELECT
+			idx
+			,userId
+			,userName
+			,phone
+			,birth
+			,email
+			,university
+			,major
+			,grade
+			,degree
+			,CV
+		FROM
+			example
+		ORDER BY
+			idx DESC
+		LIMIT
+			#{startPage}, #{recordPerPage}
+	</select>
+	
+	<select id="selectMemberTotalCount" parameterType="MemberDTO" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			example
+	</select>
+	
+	<select id="loginMember" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT
+			*
+		FROM
+			example
+		WHERE userId=#{userId} AND password=#{password}
+	</select>
+	
+	<update id="writeCv" parameterType="MemberDTO">
+		UPDATE example
+		SET
+			birth=#{birth}
+			, email=#{email}
+			, university=#{university}
+			, major=#{major}
+			, grade=#{grade}
+			, degree=#{degree}
+			, CV=#{CV}
+		WHERE
+			idx=#{idx}
+	</update>
+
+</mapper>

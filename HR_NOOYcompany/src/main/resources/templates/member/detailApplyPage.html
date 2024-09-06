@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NOOY Company</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #00001ad2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .header .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header .button-container a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header .button-container a:hover {
+            text-decoration: underline;
+        }
+
+        .mainVisual {
+            position: relative;
+            width: 100vw;
+            height: 20vh;
+            min-height: 200px; /* 최소 높이 설정 */
+            overflow: hidden;
+            background-color: #010138d2;
+            color: white;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            flex-shrink: 0; /* 기본 높이 유지를 위해 설정 */
+        }
+
+        .mainVisual h1 {
+            font-size: 2em;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .movingText {
+            position: absolute;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .movingText h2 {
+            display: inline-block;
+            padding-left: 100%;
+            animation: moveText 30s linear infinite;
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .recruiting {
+            background-color: #010138d2;
+            color: #fff;
+            padding: 40px 80px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 1200px; /* 최대 너비를 증가 */
+            text-align: center;
+            box-sizing: border-box; /* 박스 크기 계산 포함 */
+            overflow: auto; /* 박스가 넘칠 때 스크롤 표시 */
+        }
+
+        .recruiting h2 {
+            font-size: 2.5em; /* 폰트 크기 조정 */
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .mainMenu {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .mainMenu button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .mainMenu button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .details {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            color: black;
+            box-sizing: border-box; /* 박스 크기 계산 포함 */
+        }
+
+        #footer {
+            background-color: #000;
+            color: white;
+            text-align: right;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        #footer .wrapFooter img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="/images/NY.jpg" title="headlogo" alt="headlogo">
+        </div>
+        <div class="button-container">
+        	<a href="/member/updateMember.do">회원정보수정</a>
+            <a href="/member/detailApplyPage.do">지원내역</a>
+            <a href="/member/logout.do">로그아웃</a>
+        </div>
+    </div>
+
+    <div class="mainVisual">
+        <h1>Welcome to NOOY Company</h1>
+        <h3>We are recruiting people</h3>
+        <div class="movingText">
+            <h2>Your future is HERE!</h2>
+        </div>
+    </div>
+
+    <div class="recruiting">
+        <h2>지원내역 조회</h2>
+        <button id="toggleButton">지원서 조회</button>
+        <div id="details" class="hidden details">
+            <h3>C++ 개발자 지원</h3>
+            <p>지원자 이름: <span th:text="${memberdata.userName}"></span></p>
+            <p>지원자 생년월일: <span th:text="${#dates.format(memberdata.birth, 'yyyy-MM-dd')}"></span></p>
+            <p>지원자 전화번호: <span th:text="${memberdata.phone}"></span></p>
+            <p>지원자 이메일: <span th:text="${memberdata.email}"></span></p>
+            <p>지원자 대학교: <span th:text="${memberdata.university}"></span></p>
+            <p>지원자 학위: <span th:text="${memberdata.degree}"></span></p>
+            <p>지원자 전공: <span th:text="${memberdata.major}"></span></p>
+            <p>지원자 평균학점: <span th:text="${memberdata.grade}"></span></p>
+            <p>지원자 자기소개서: <span th:text="${memberdata.CV}"></span></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="footer">
+        <div class="wrapFooter">
+            <p class="logo"><img src="/images/NY.jpg" title="footlogo" alt="footlogo"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function () {
+            var details = document.getElementById('details');
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+                this.textContent = '지원서 닫기'; // 버튼 텍스트 변경
+            } else {
+                details.classList.add('hidden');
+                this.textContent = '지원서 조회'; // 버튼 텍스트 변경
+            }
+        });
+    </script>
+</body>
+</html>

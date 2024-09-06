@@ -19,8 +19,8 @@
 
 
 1. 테스트 케이스 기능 (Insert/Read/Update/Delete/Login)
-(예시)
-![image](https://github.com/user-attachments/assets/5e0c59e8-8a1d-4176-b856-905be13f6408)
+(testOfInsert 예시)
+![그림1](https://github.com/user-attachments/assets/8de2037b-a8c1-4f17-8e08-7e1af5e22a8e)
 ![그림1](https://github.com/user-attachments/assets/42ed9140-7d0b-4ce4-a56d-0cbb84cc5dc6)
 <MySQL 데이터베이스에 회원정보 Insert>
 

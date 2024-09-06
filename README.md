@@ -27,6 +27,7 @@
 
 
 2. 홈페이지 구현
+3. 
 <시작 페이지>
 ![image](https://github.com/user-attachments/assets/64e1723f-c91a-4b57-82e6-ab2d01d9f7de)
 
